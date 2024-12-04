@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+            font-size: 12px;
+            margin: 12px;
+        }
+
+        header {
+            margin-bottom: 40px;
+        }
+
+        header img {
+            max-width: 150px;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            margin: 5px 0;
+        }
+
+        header h1 {
+            font-size: 30px;
+            text-align: left;
+            margin: 10px 0;
+        }
+
+        .quote {
+            color: red;
+            font-weight: 600;
+            font-size: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            margin-bottom: 30px;
+        }
+
+        th,
+        td {
+            border: 1px solid #000;
+            padding: 10px;
+            text-align: left;
+            width: 70%;
+        }
+
+        td {
+            font-size: 16px;
+        }
+
+        th {
+            background-color: #f0f0f0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .price {
+            font-weight: bold;
+            color: red;
+        }
+
+        .total-price {
+            font-weight: bold;
+            color: red;
+            text-align: left;
+        }
+
+        .included {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Cost Breakdown</h1>
+        </header>
+        <!-- <pre><%= JSON.stringify(result, null, 2) %></pre> -->
+        <div>
+            <p class="quote">Quote Ref : <%= result.Opportunity %>
+            </p>
+            <p class="quote">Drawing Ref : <%= result.DrawingRevision %>
+            </p>
+        </div>
+
+        <div>
+            <table>
+                <tr>
+                    <th>Storage Partition & Door System</th>
+                    <th class="price">£<%= result.StoragePartitionAndDoorSystem.TotalPrice %>
+                    </th>
+                </tr>
+                <tr>
+                    <td>Security Mesh</td>
+                    <td class="included">
+                        <%= result.StoragePartitionAndDoorSystem.SecurityMesh %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Kicker and Corner Protection</td>
+                    <td class="included">
+                        <%= result.StoragePartitionAndDoorSystem.KickerAndCornerProtection %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Soffits</td>
+                    <td class="included">
+                        <%= result.StoragePartitionAndDoorSystem.Soffits %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Liner Panelling</td>
+                    <td class="included">
+                        <%= result.StoragePartitionAndDoorSystem.LinerPanelling %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Forklift, Skip, Portaloo, Other</td>
+                    <td class="included">
+                        <%= result.StoragePartitionAndDoorSystem.ForkliftSkipPortalooOther %>
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <th>Mezzanine Floor Structure & Fire Protection</th>
+                    <th class="price">£ <%= result.MezzanineFloorStructureAndFireProtection.TotalPrice %>
+                    </th>
+                </tr>
+                <tr>
+                    <td>Plant Hire</td>
+                    <td class="included">
+                        <%= result.MezzanineFloorStructureAndFireProtection.PlantHire %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Fire Ceiling, Column Cases, Fascia Cover, Staircase Enclosures</td>
+                    <td class="included">
+                        <%= result.MezzanineFloorStructureAndFireProtection.FireCeilingColumnCasesFasciaCoverStaircaseEnclosures
+                            %>
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <th>Electrical Package</th>
+                    <th class="price">£ <%= result.ElectricalPackage.TotalPrice %>
+                    </th>
+                </tr>
+                <tr>
+                    <td>General & Emergency Lighting</td>
+                    <td class="included">
+                        <%= result.ElectricalPackage.GeneralAndEmergencyLighting %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Fire & Smoke Detection System</td>
+                    <td class="included">
+                        <%= result.ElectricalPackage.FireAndSmokeDetectionSystem %>
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <th class="">Floor Painting Package</th>
+                    <th class="price">£ <%= result.FloorPaintingPackage.TotalPrice %>
+                    </th>
+                </tr>
+                <tr>
+                    <td>Ground Floor</td>
+                    <td class="included">
+                        <%= result.FloorPaintingPackage.GroundFloor %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Mezzanine Floor Level(s)</td>
+                    <td class="included">
+                        <%= result.FloorPaintingPackage.MezzanineFloorLevels %>
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td>Total</td>
+                    <td class="price">£ <%= result.TotalProjectCosts %>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</body>
+
+</html>

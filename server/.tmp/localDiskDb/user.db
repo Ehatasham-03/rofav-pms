@@ -1,0 +1,2 @@
+{"fname":"Aashish","lname":"Kumar","email":"ashishjaiswal9955@gmail.com","country_code":"+91","phone":"9900998877","password":"$2a$10$J2GYZ257wNReUXxJWGHY.etAWrKScr8gGeN.Eq0dcrwDOksdZcA4G","company_name":"Garden","role":"owner","password_reset_token":"","createdAt":1715113140561,"updatedAt":1715115149790,"isActive":true,"is_verified":true,"_id":1}
+{"$$indexCreated":{"fieldName":"email","unique":true,"sparse":false}}

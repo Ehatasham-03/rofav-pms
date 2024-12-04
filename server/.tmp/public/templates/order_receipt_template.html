@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Receipt</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      h1,
+      h2 {
+        color: #2c3e50;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #f2f2f2;
+      }
+
+      .total {
+        font-weight: bold;
+      }
+
+      .section {
+        margin-bottom: 20px;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .hotel-info {
+        text-align: right;
+      }
+
+      .logo {
+        font-size: 2.5em;
+        font-weight: bold;
+        color: #e74c3c;
+        margin-bottom: 5px;
+      }
+
+      .address {
+        font-size: 0.9em;
+      }
+
+      .contact {
+        text-align: left;
+      }
+
+      .invoice-label {
+        font-size: 1.2em;
+        color: #7f8c8d;
+        margin-bottom: 10px;
+      }
+
+      .phone,
+      .email {
+        font-size: 0.9em;
+      }
+
+      .email {
+        color: #3498db;
+      }
+
+      .products-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 0;
+      }
+
+      .summary-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 0;
+      }
+
+      .summary-label {
+        text-align: right;
+        border: none;
+        padding: 8px;
+      }
+
+      .summary-value {
+        width: 17%;
+        /* Adjust this value to match the width of the Total column in the products table */
+        text-align: left;
+        border: 1px solid #ddd;
+        padding: 8px;
+      }
+
+      /* Remove top border from the first row of the summary table */
+      .summary-table tr:first-child td {
+        border-top: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="hotel-info">
+        <div class="logo">Rofabs Hotels</div>
+        <div class="address">
+          Hitech City, Madhapur<br />
+          Hyderabad, Telangana, 500081
+        </div>
+      </div>
+      <div class="contact">
+        <div class="invoice-label">INVOICE</div>
+        <div class="phone">Ph. +91 797673165</div>
+        <div class="email">info@rofabsHotels.com</div>
+      </div>
+    </header>
+
+    <div class="section">
+      <h2>Order Details</h2>
+      <table>
+        <tr>
+          <th>Order ID</th>
+          <td>{{orderId}}</td>
+        </tr>
+        <tr>
+          <th>Property ID</th>
+          <td>{{propertyId}}</td>
+        </tr>
+        <tr>
+          <th>Type of Sale</th>
+          <td>{{typeOfSale}}</td>
+        </tr>
+        {{#if tableNumber}}
+        <tr>
+          <th>Table Number</th>
+          <td>{{tableNumber}}</td>
+        </tr>
+        {{/if}} {{#if roomNumber}}
+        <tr>
+          <th>Room Number</th>
+          <td>{{roomNumber}}</td>
+        </tr>
+        {{/if}} {{#if guests}}
+        <tr>
+          <th>Guests</th>
+          <td>{{guests}}</td>
+        </tr>
+        {{/if}} {{#if deliveryPartner}}
+        <tr>
+          <th>Delivery Partner</th>
+          <td>{{deliveryPartner}}</td>
+        </tr>
+        {{/if}}
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Products</h2>
+      <table class="products-table">
+        <thead>
+          <tr>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Unit Price</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each products}}
+          <tr>
+            <td>{{productName}}</td>
+            <td>{{quantity}}</td>
+            <td>{{price}}</td>
+            <td>{{total}}</td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+      <table class="summary-table">
+        <tr>
+          <td class="summary-label"><strong>Subtotal</strong></td>
+          <td class="summary-value">₹{{subtotal}}</td>
+        </tr>
+        {{#if discountAmount}}
+        <tr>
+          <td class="summary-label"><strong>Discount</strong></td>
+          <td class="summary-value">-₹{{discountAmount}}</td>
+        </tr>
+        {{/if}}
+        <tr>
+          <td class="summary-label"><strong>Tax</strong></td>
+          <td class="summary-value">₹{{totalTax}}</td>
+        </tr>
+        <tr class="total">
+          <td class="summary-label"><strong>Total</strong></td>
+          <td class="summary-value">₹{{totalPrice}}</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

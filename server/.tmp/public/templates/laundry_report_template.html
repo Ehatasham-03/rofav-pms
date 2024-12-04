@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laundry Report</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 20px;
+            color: #333;
+            background-color: #f4f7f9;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 36px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #3498db;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        h3 {
+            color: #2c3e50;
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            line-height: 1.8;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            background-color: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            border: 1px solid #e0e0e0;
+            padding: 14px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #2980b9;
+            color: #fff;
+            font-weight: 500;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f7f9fc;
+        }
+
+        tr:hover {
+            background-color: #f1f5f9;
+        }
+
+        .summary {
+            background-color: #ebf5fb;
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 40px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .summary h2 {
+            margin-top: 0;
+            color: #2980b9;
+            font-size: 24px;
+        }
+
+        .summary p {
+            margin: 15px 0;
+            font-size: 16px;
+        }
+
+        .card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .summary .desclaimer {
+            font-size: 12px;
+            color: #999;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Laundry Management Report</h1>
+
+    <!-- Laundry Management Section -->
+    <div class="card">
+        <h2>Laundry Management</h2>
+        <p><strong>Total Items In:</strong> {{totalItemsIn}}</p>
+        <p><strong>Total Items Out:</strong> {{totalItemsOut}}</p>
+        <p><strong>Damaged Items:</strong> {{damagedItems}}</p>
+    </div>
+
+    <!-- Vendor Analysis Section -->
+    <div class="card">
+        <h2>Vendor Analysis</h2>
+        {{#each vendorAnalysis}}
+        <h3>{{@key}}</h3>
+        <p><strong>Items Handled:</strong> {{itemsHandled}}</p>
+        <p><strong>Total Cost:</strong> {{totalCost}}</p>
+        <p><strong>Average Turnaround Time:</strong> {{averageTurnaroundTime}} days</p>
+        {{/each}}
+    </div>
+
+    <!-- Product Breakdown Section -->
+    <div class="card">
+        <h2>Product Breakdown</h2>
+        {{#each productBreakdown}}
+        <h3>{{@key}}</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Item Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each this}}
+                <tr>
+                    <td>{{@key}}</td>
+                    <td>{{this}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        {{/each}}
+    </div>
+
+    <!-- Cost Analysis Section -->
+    <div class="card">
+        <h2>Cost Analysis</h2>
+        {{#each costAnalysis}}
+        <h3>{{@key}}</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Total Cost</th>
+                    <th>Item Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each this}}
+                <tr>
+                    <td>{{@key}}</td>
+                    <td>{{this.totalCost}}</td>
+                    <td>{{this.itemCount}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        {{/each}}
+    </div>
+
+    <!-- Damage Analysis Section -->
+    <div class="card">
+        <h2>Damage Analysis</h2>
+        {{#each damageAnalysis}}
+        <h3>{{@key}}</h3>
+        <p><strong>Total Damaged Items:</strong> {{totalDamagedItems}}</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Damaged Items</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each damagedProducts}}
+                <tr>
+                    <td>{{@key}}</td>
+                    <td>{{this}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        {{/each}}
+    </div>
+
+    <!-- Summary Section -->
+    <div class="summary">
+        <h2>Summary</h2>
+
+        <p>{{summary}}</p>
+
+        <p class="desclaimer">This summary is generated by AI through the analysis of data. It can help you improve your
+            business by
+            identifying unnecessary expenses and highlighting areas for potential improvement in your business model.
+        </p>
+    </div>
+
+</body>
+
+</html>
